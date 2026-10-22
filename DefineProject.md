@@ -86,8 +86,7 @@ Business objectives explain *why* the system is needed, while project objectives
 
 ### 3.3 Agreement with the Module Team
 
-**Agreed with module team:** [Tutor name, date, and any changes requested]
-
+**Agreed with module team:** 
 ### 3.4 In Scope
 
 The project includes:
