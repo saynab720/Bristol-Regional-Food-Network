@@ -2,7 +2,6 @@
 
 Project: Bristol Regional Food Network
 Use Case: Producer Product Listing and Inventory Management
-Issue: GitHub Issue #8
 
 ##1. Product Listing
 **User story**
