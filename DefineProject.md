@@ -1,54 +1,64 @@
-# Project Scope and Business Objectives — UC1: Product Listing
+# Project Scope and Business Objectives – UC1: Product Listing and Inventory Management
 
 **Date:** 22 October 2026
 
-Our group has chosen **Use Case 1: Producer Product Listing and Inventory Management**. We will automate two functionalities in Camunda: listing a product and managing its stock and availability.
+Our group has selected **Use Case 1: Producer Product Listing and Inventory Management**. The project focuses on automating two closely related marketplace functions: product listing and inventory management. These processes are important because they directly affect the accuracy, availability, and reliability of products displayed to customers.
 
-## 1. Business Objectives
+The solution will be modelled using BPMN and implemented in Camunda as executable workflows.
 
-Business objectives describe what the marketplace wants to achieve through product listing and inventory management. They explain why the system is worth building.
+---
 
-| ID | Business Objective | Why It Matters | How We Would Know It's Met |
-|---|---|---|---|
-| BO1 | Make it quick and easy for producers to list products. | More products listed means more choice for customers and more commission for the marketplace. | A producer can submit a product through one form, and valid products go live without waiting for an administrator. |
-| BO2 | Keep product information accurate and trustworthy. | Customers need correct prices, allergen information, and best-before dates to buy safely. | Every published product has passed validation; missing or invalid details are always sent back for correction. |
-| BO3 | Only allow genuine organic claims. | False organic labels damage customer trust and can break the law. | Every product marked organic has a verified certificate, or is published as non-organic. |
-| BO4 | Never sell what isn't available. | Selling out-of-stock or out-of-season items leads to cancelled orders and unhappy customers. | A product becomes unavailable automatically when stock reaches zero or its season ends, and becomes available again when restocked in season. |
-| BO5 | Reduce manual administrative work. | Automated checks free the administrator team to deal with genuine problems. | Administrators only intervene for exceptions, such as the verification service being unavailable. |
-| BO6 | Meet legal and ethical duties. | Food labelling and data protection are legal requirements. | Allergen information is mandatory on every listing, and producers' personal data is only collected where needed. |
+# 1. Business Objectives
 
-### Stakeholder Alignment
+Business objectives explain what the marketplace aims to achieve by introducing automated product listing and inventory management processes. They provide the business justification for the system and help guide design decisions throughout the project.
 
-These business objectives link to the stakeholder analysis:
+| ID | Business Objective | Why It Matters | Success Indicator |
+|----|-------------------|----------------|------------------|
+| BO1 | Make it quick and easy for producers to list products. | A larger and more diverse catalogue benefits both producers and customers. | Producers can submit products through a single process and approved products are published automatically. |
+| BO2 | Maintain accurate and trustworthy product information. | Customers rely on product details such as pricing, allergens, and shelf life when making purchasing decisions. | Invalid or incomplete submissions are identified and returned for correction before publication. |
+| BO3 | Ensure organic claims are genuine. | Incorrect organic labelling can damage trust and create legal risks. | Products advertised as organic are successfully verified or published as non-organic. |
+| BO4 | Prevent unavailable products from being sold. | Incorrect stock information can result in cancelled orders and a poor customer experience. | Products automatically become unavailable when stock reaches zero or when the season ends. |
+| BO5 | Reduce manual administration. | Automation allows administrators to focus on exceptional cases rather than routine checks. | Administrative involvement is only required when automated validation cannot be completed. |
+| BO6 | Comply with legal and ethical responsibilities. | Food labelling and data protection obligations must be met. | Allergen information is mandatory and only necessary personal data is collected. |
 
-- **BO1 and BO4:** Support producers.
-- **BO2 to BO4:** Protect and serve customers.
-- **BO3:** Supports the certification body.
-- **BO6:** Supports the food safety regulator.
-- **BO5:** Benefits the marketplace administrator.
+## Stakeholder Alignment
 
-## 2. Project Objectives
+These objectives support the needs of multiple stakeholders across the marketplace:
 
-Project objectives describe what our team will deliver for Assessment Task 1 by **14:00 on 10 December 2026**.
+- **BO1 and BO4** primarily support producers by making product management easier.
+- **BO2, BO3, and BO4** protect customers by ensuring information is accurate and reliable.
+- **BO3** supports the certification body by enforcing verification requirements.
+- **BO6** aligns with the expectations of food safety regulators.
+- **BO5** benefits marketplace administrators by reducing routine workload.
 
-Business objectives explain *why* the system is needed, while project objectives explain *what* we will produce.
+---
+
+# 2. Project Objectives
+
+Project objectives describe what the team will deliver for Assessment Task 1 by **10 December 2026**. While business objectives explain why the system is needed, project objectives define the outputs that will be produced during the project.
 
 | ID | Project Objective | Sprint |
-|---|---|---|
-| PO1 | Model the whole marketplace in a strategic BPMN model. | 1 |
-| PO2 | Analyse stakeholders' goals and dependencies using i* Strategic Dependency (SD) and Strategic Rationale (SR) models. | 2 |
-| PO3 | Model both functionalities as detailed operational BPMN processes, including alternative and exception paths. | 2 |
-| PO4 | Make both processes executable in Camunda, with forms, service tasks, decisions, and error handling. | 2–3 |
-| PO5 | Show traceability from business objectives and stakeholder goals to the running processes. | 2–3 |
-| PO6 | Evaluate the legal, ethical, social, and professional issues of the system. | 3 |
-| PO7 | Deliver components that can be carried into the Task 2 Django and Docker product. | 3 |
+|----|------------------|---------|
+| PO1 | Create a strategic BPMN model representing the marketplace. | 1 |
+| PO2 | Analyse stakeholder goals and dependencies using i* SD and SR models. | 2 |
+| PO3 | Develop operational BPMN models for both selected functionalities, including exception paths. | 2 |
+| PO4 | Implement both processes in Camunda using forms, gateways, service tasks, and error handling. | 2–3 |
+| PO5 | Demonstrate traceability between business objectives, stakeholder goals, and implemented processes. | 2–3 |
+| PO6 | Evaluate legal, ethical, social, and professional considerations. | 3 |
+| PO7 | Produce artefacts that can be reused in Task 2. | 3 |
 
-## 3. Scope
+---
 
-### 3.1 Functionality 1 — Product Listing and Verification
+# 3. Scope
 
-1. A producer submits a new product with the following details:
-   - Name
+## 3.1 Functionality 1 – Product Listing and Verification
+
+This functionality enables producers to create and publish new product listings.
+
+The process includes:
+
+1. Submitting product information, including:
+   - Product name
    - Description
    - Category
    - Price
@@ -57,84 +67,108 @@ Business objectives explain *why* the system is needed, while project objectives
    - Farm origin
    - Harvest date
    - Allergen information
-   - Organic claim
+   - Organic status
    - Best-before date
 
-2. The system validates the submitted details. If anything is missing or invalid, the producer is asked to correct it.
+2. Automatic validation of submitted information.
 
-3. If the product is claimed to be organic, its certificate is checked using a simulated certification service.
+3. Organic certification checks when a product is marked as organic.
 
-4. If the certificate fails verification, the producer can choose to publish the product as non-organic or withdraw it.
+4. Allowing producers to:
+   - Publish as non-organic if certification cannot be confirmed.
+   - Withdraw the listing if preferred.
 
-5. If the certification service is unavailable, the system retries the request and then refers the case to an administrator for manual review.
+5. Exception handling when the certification service is unavailable.
 
-6. Once all required checks are completed successfully, the product is published and the producer is notified.
+6. Publishing approved products and notifying the producer.
 
-### 3.2 Functionality 2 — Inventory and Seasonal Availability
+---
 
-1. A producer updates a product's stock quantity or availability period.
+## 3.2 Functionality 2 – Inventory and Seasonal Availability
 
-2. The system determines whether the product is available, out of stock, or out of season.
+This functionality manages stock levels and product availability.
 
-3. When stock reaches zero, the product automatically becomes unavailable for new orders.
+The process includes:
 
-4. When stock is replenished and the product is still in season, it becomes available again.
+1. Producers updating stock levels or availability periods.
+2. Automatic assessment of whether a product is:
+   - Available
+   - Out of stock
+   - Out of season
+3. Automatic withdrawal of products that reach zero stock.
+4. Automatic reactivation when stock is replenished during the valid availability period.
+5. Withdrawal of products when their seasonal availability expires.
+6. Notifications informing producers of important status changes.
 
-5. When the availability period ends, the product is automatically withdrawn from availability.
+---
 
-6. The producer is notified of relevant changes.
+## 3.3 Agreement with the Module Team
 
-### 3.3 Agreement with the Module Team
+**Agreed with module team:** *To be confirmed during supervision sessions.*
 
-**Agreed with module team:** 
-### 3.4 In Scope
+---
+
+## 3.4 In Scope
 
 The project includes:
 
-- A strategic BPMN model of the whole marketplace.
+- A strategic BPMN model of the marketplace.
 - i* Strategic Dependency (SD) and Strategic Rationale (SR) models.
-- Operational BPMN models for both functionalities, including exception paths.
-- Executable Camunda processes with user tasks, Camunda Forms, service tasks, gateways, events, and process variables.
-- A business rule for product availability: in stock, out of stock, or out of season.
-- A simulated organic certification service that can return the following outcomes:
+- Detailed operational BPMN models for both selected functionalities.
+- Executable Camunda workflows.
+- A business rule for product availability management.
+- A simulated certification service capable of returning:
   - Verified
-  - Not found
+  - Not Found
   - Expired
   - Unavailable
 - Simulated producer notifications.
-- Test scenarios and a README file.
-- An evaluation of the legal, ethical, social, and professional issues associated with the system.
+- Testing scenarios and supporting documentation.
+- Evaluation of legal, ethical, social, and professional issues.
 
-### 3.5 Out of Scope
+---
 
-The following are excluded from Task 1:
+## 3.5 Out of Scope
 
-- Customer ordering, checkout, and payment (Use Case 2), except for stock updates triggered when an order is placed.
-- Food quality incidents and customer notifications (Use Case 3).
-- A full website front end, Django REST Framework services, and Docker implementation, which are part of Task 2.
-- A real certification service, real producer data, or live hosting.
-- Producer registration and account management, as producers are assumed to be already registered.
+The following areas are excluded from Task 1:
 
-## 4. Assumptions and Constraints
+- Customer ordering, checkout, and payment processes (Use Case 2), apart from stock updates triggered by orders.
+- Food quality incident management and customer notifications (Use Case 3).
+- Full web application development using Django or Docker, which will be addressed in Task 2.
+- Real third-party services or live producer data.
+- Producer registration and account management, as all producers are assumed to already be registered.
 
-### 4.1 Assumptions
+---
 
-- Producers are already registered and logged in before listing a product.
-- Each product belongs to one producer.
-- The organic certification service is simulated by the team. It behaves like a real external service, including occasional unavailability.
-- Stock reductions resulting from customer orders arrive as simple updates. The full ordering process is not implemented.
+# 4. Assumptions and Constraints
 
-### 4.2 Constraints
+## 4.1 Assumptions
 
-- **Deadline:** Submission must be completed before 14:00 on 10 December 2026, with no late submission window.
-- **Team:** Four members working alongside other modules.
-- **Technology:** Processes must run in Camunda; BPMN diagrams alone are not sufficient.
-- **External services:** All external services must be simulated rather than live.
-- **Academic integrity:** All models and diagrams must be created by the team. Any AI assistance with code must be declared.
-- **Legal compliance:** Allergen information is mandatory on every listing under applicable UK food labelling requirements, and personal data must be handled in accordance with UK GDPR.
+The project assumes that:
 
-## 5. Summary
+- Producers are already registered and authenticated before using the system.
+- Each product belongs to a single producer.
+- The organic certification service is simulated but behaves realistically, including occasional service failures.
+- Stock reductions from customer purchases arrive as inventory updates rather than through a full ordering process.
 
-The project focuses on automating two core marketplace functionalities: **product listing and verification**, and **inventory and seasonal availability management**.
+## 4.2 Constraints
 
-The team will create strategic and operational models, implement executable Camunda workflows, simulate external services, handle exceptions, and test the resulting processes. The solution must demonstrate traceability between business objectives, stakeholder needs, and implemented workflows while considering relevant legal, ethical, social, and professional responsibilities.
+The project is subject to the following constraints:
+
+- Submission must be completed by **14:00 on 10 December 2026**.
+- The team consists of four members working alongside other academic commitments.
+- All process implementations must run within Camunda.
+- External services must be simulated rather than connected to live systems.
+- All models and process artefacts must be produced by the team.
+- Any AI-assisted development must be declared.
+- Food labelling and personal data handling must comply with relevant UK legal requirements.
+
+---
+
+# 5. Summary
+
+This project focuses on automating two important marketplace functions: **product listing and verification** and **inventory and seasonal availability management**.
+
+The proposed solution will combine strategic and operational process modelling with executable Camunda workflows. By automating product validation, certification checks, and stock management, the system aims to improve accuracy, reduce administrative effort, and support a more reliable experience for both producers and customers.
+
+The project will also demonstrate clear links between business objectives, stakeholder needs, and the implemented processes, providing a strong foundation for the more complete marketplace system developed in Task 2.
