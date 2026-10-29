@@ -3,181 +3,183 @@
 **Project:** Bristol Regional Food Network  
 **Use Case:** UC01 – Product Listing & Inventory Management  
 **Sprint:** Sprint 1  
-**Document:** Stakeholder Analysis (aligned with strategic BPMN)
+**Document:** Stakeholder Analysis
 
-## 1. Overview and Scope
+## 1. Overview
 
-The Bristol Regional Food Network connects local producers with customers. The strategic BPMN depicts four internal functional areas: **Producer & Product Management**, **Sales & Operations**, **Finance**, and **Quality, Compliance & Sustainability**. It also shows external participants: **Producers**, **Customers**, **Payment Provider**, **Organic Certification Body**, **Food Safety Regulator**, and **Delivery Partner**.
+The Bristol Regional Food Network is a marketplace that connects local food producers with customers. Our chosen use case is **Product Listing and Inventory Management**. This covers how producers add products, update their information and stock, and how the system checks the details before showing them to customers.
 
-**UC01** concentrates on the **Manage the product catalogue** subprocess within Producer & Product Management: creating, validating, publishing and updating listings, including stock and seasonal availability. Other functions shown in the strategic model provide organisational context but are not necessarily implemented in UC01.
+We looked at the stakeholders in our strategic BPMN diagram to understand who is involved and what they need from the system. Some stakeholders are directly involved in our use case, while others are part of the wider marketplace.
 
-### Stakeholder overview and relevance
+### Stakeholders identified
 
-| Stakeholder / actor | Shown in strategic BPMN? | UC01 relevance | Role |
-|---|---|---|---|
-| Producers | Yes – external pool | Direct | Supply and update product information and stock |
-| Customers | Yes – external pool | Indirect beneficiary | Rely on accurate published product information |
-| Bristol Regional Food Network / Marketplace Operator | Yes – central organisation | Direct business stakeholder | Defines catalogue rules and oversees the marketplace |
-| Producer & Product Management team | Yes – internal lane | Direct | Owns the product catalogue business process |
-| Marketplace Administrator | Not separately labelled; proposed internal role | Conditional | Handles permissions, flagged listings and manual review if adopted |
-| Organic Certification Body | Yes – external pool | Conditional | Verifies organic claims if certification checks are in scope |
-| Food Safety Regulator | Yes – external pool | Indirect / compliance | Sets relevant food safety expectations; receives compliance reporting in wider enterprise model |
-| Sales & Operations team | Yes – internal lane | Downstream | Uses published catalogue information to support sales |
-| Quality, Compliance & Sustainability team | Yes – internal lane | Related oversight | Oversees quality and compliance processes |
-| Payment Provider | Yes – external pool | Outside UC01 | Supports payment processing in sales/finance workflows |
-| Delivery Partner | Yes – external pool | Outside UC01 | Supports order fulfilment and delivery |
-| Marketplace Platform | Represented by organisational processes, not a separate external pool | Supporting system | Validates, stores and publishes listing data |
+| Stakeholder | Role in the marketplace | Involvement in Use Case 1 |
+|---|---|---|
+| Producers | Add products and keep stock information updated | Direct |
+| Customers | View products and their availability | Indirect – use the published information |
+| Bristol Regional Food Network / Marketplace Operator | Runs the marketplace and sets product listing rules | Direct |
+| Producer & Product Management team | Manages the product catalogue | Direct |
+| Marketplace Administrator | Could review problem listings and manage permissions | Proposed role |
+| Organic Certification Body | Checks organic certification where needed | Possible involvement |
+| Food Safety Regulator | Sets food safety requirements | Wider marketplace |
+| Quality, Compliance & Sustainability team | Looks after quality and compliance processes | Related to Use Case 1 |
+| Sales & Operations | Uses the product catalogue to sell and fulfil orders | Outside our chosen workflow |
+| Finance | Manages financial processes | Outside our chosen workflow |
+| Payment Provider | Processes payments | Outside our chosen workflow |
+| Delivery Partner | Delivers orders | Outside our chosen workflow |
 
-**Priority definitions:** **Must** = essential to the agreed UC01 workflow; **Should** = important proposed support; **Could** = optional enhancement. Proposed features must be confirmed by the group.
+**Priorities:** **Must Have** means essential for our use case. **Should Have** means useful but needs to be agreed by the group. **Could Have** means an extra feature if we have enough time.
 
 ## 2. Producers
 
-**Goal:** Manage products independently, keep stock and seasonal information accurate, and understand why a submission succeeds or fails.
+Producers are one of the main stakeholders because they will be using the system to add and manage products. Their technical experience varies, so the platform needs to be straightforward and easy to use.
 
-| ID | Goal | System requirement / response | Priority |
+| ID | Producer goal | How we can meet it | Priority |
 |---|---|---|---|
-| PG01 | Create listings easily | Form for name, description, price and availability | Must |
-| PG02 | Correct product details | Edit existing listings | Must |
-| PG03 | Keep inventory current | Update stock and seasonal availability | Must |
-| PG04 | Publish valid listings | Validate mandatory fields before publication | Must |
-| PG05 | Resolve submission errors | Explain validation failures and permit correction | Must |
-| PG06 | Use the system with little training | Clear, accessible product management interface | Must |
-| PG07 | Support organic claims | Submit certification details for verification if adopted | Should (conditional) |
-| PG08 | Know listing status | Display published, rejected or pending status | Should |
+| PG01 | Add products easily | Have a form for product name, description, price and availability | Must Have |
+| PG02 | Update product information | Allow producers to edit existing listings | Must Have |
+| PG03 | Keep stock and seasonal availability up to date | Allow stock and seasonal information to be changed | Must Have |
+| PG04 | Make sure products are listed correctly | Check required fields before publishing | Must Have |
+| PG05 | Know what went wrong if a listing fails | Show clear error messages and allow corrections | Must Have |
+| PG06 | Use the system without much training | Keep the product management pages simple | Must Have |
+| PG07 | Show organic certification where relevant | Allow certification details to be checked if we include this feature | Should Have |
+| PG08 | Know whether a product has been published | Show a listing status such as published, rejected or pending | Should Have |
 
 ## 3. Customers
 
-**Goal:** View accurate, current information about locally sourced products. Customers do not submit listings in UC01.
+Customers will not be creating product listings, but they rely on the information producers upload. They need to know what products are available and whether the details are accurate.
 
-| ID | Goal | System requirement / response | Priority |
+| ID | Customer goal | How we can meet it | Priority |
 |---|---|---|---|
-| CG01 | See trustworthy listings | Display validated product names, descriptions and prices | Must |
-| CG02 | Know whether products are available | Display current availability and stock status | Must |
-| CG03 | Identify seasonal products | Show seasonal availability | Must |
-| CG04 | Understand product origin | Show farm/producer origin information | Must |
-| CG05 | Access harvest information | Show harvest dates where applicable | Must |
-| CG06 | Avoid invalid listings | Hide rejected, draft or unpublished listings | Must |
-| CG07 | Understand organic claims | Show verified certification status if implemented | Should (conditional) |
+| CG01 | See clear product information | Show product names, descriptions and prices | Must Have |
+| CG02 | Know if a product is available | Show the latest stock and availability information | Must Have |
+| CG03 | See which products are seasonal | Display seasonal availability | Must Have |
+| CG04 | Know where the product comes from | Show the farm or producer information | Must Have |
+| CG05 | See harvest dates where relevant | Include harvest dates for applicable products | Must Have |
+| CG06 | Avoid seeing incomplete or invalid listings | Only show products that have passed validation and been published | Must Have |
+| CG07 | Know whether organic claims have been checked | Show verified certification information if we include this feature | Should Have |
 
 ## 4. Bristol Regional Food Network / Marketplace Operator
 
-**Goal:** Maintain a reliable, consistent product catalogue that supports the enterprise's broader sales and compliance activities. The strategic BPMN represents this organisation through internal lanes; the operator is a business role, not an additional external pool.
+The marketplace operator is responsible for how the platform runs. For our use case, their main goal is to make sure product listings follow the same rules and that customers can rely on the information shown.
 
-| ID | Goal | System requirement / response | Priority |
+| ID | Marketplace goal | How we can meet it | Priority |
 |---|---|---|---|
-| MG01 | Ensure listing quality | Apply standard mandatory-field validation | Must |
-| MG02 | Maintain catalogue consistency | Standardise product details and availability fields | Must |
-| MG03 | Support seasonal producers | Permit timely seasonal stock updates | Must |
-| MG04 | Enforce marketplace policies | Define handling of inaccurate or misleading listings | Should |
-| MG05 | Maintain accountability | Keep records of important listing changes | Should |
+| MG01 | Keep product listings accurate | Validate the required product information | Must Have |
+| MG02 | Keep the catalogue consistent | Use the same required fields for each product | Must Have |
+| MG03 | Support seasonal products | Allow producers to update stock and seasonal details | Must Have |
+| MG04 | Deal with misleading or incorrect listings | Agree on a process for reviewing problem listings | Should Have |
+| MG05 | Keep track of important changes | Record product updates and relevant actions | Should Have |
 
 ### Producer & Product Management team
 
-This **internal BPMN lane** owns the **Manage the product catalogue** subprocess. Its operational goals are to process producer submissions, validate product details, publish approved listings and keep availability accurate. It depends on producers for correct information and on the platform for validation, storage and publication.
+This team appears as a lane in our strategic BPMN diagram. It is responsible for the **Manage the product catalogue** subprocess, which is the main process we are focusing on. It needs producers to provide the correct information and the system to validate, save and publish it.
 
-## 5. Marketplace Administrator (proposed role)
+## 5. Marketplace Administrator
 
-The strategic BPMN does **not** label an administrator as a separate participant. An administrator can be modelled as an internal role within Producer & Product Management **if** the group chooses manual reviews or access administration.
+We have also included a Marketplace Administrator as a possible stakeholder. The administrator is **not shown as a separate participant in our current strategic BPMN**, but could be part of the Producer & Product Management team. This role would be useful if we decide that some listings need manual review.
 
-| ID | Goal | System requirement / response | Priority |
+| ID | Administrator goal | How we can meet it | Priority |
 |---|---|---|---|
-| AG01 | Restrict unauthorised changes | Producers may edit only listings they are permitted to manage | Must (security design) |
-| AG02 | Inspect problematic listings | View failed, flagged or pending submissions | Should |
-| AG03 | Resolve exceptional submissions | Approve, reject or request corrections in a manual review task | Should (conditional) |
-| AG04 | Maintain accountability | Log administrative changes and review decisions | Should |
-| AG05 | Suspend problematic listings | Temporarily unpublish listings when necessary | Could |
+| AG01 | Stop unauthorised product changes | Only allow producers to edit listings they have permission to manage | Must Have |
+| AG02 | See listings that have problems | Show rejected, flagged or pending listings | Should Have |
+| AG03 | Review listings when needed | Allow an administrator to approve, reject or request changes | Should Have |
+| AG04 | Keep a record of decisions | Record review decisions and important changes | Should Have |
+| AG05 | Remove problematic listings temporarily | Allow authorised administrators to unpublish a listing | Could Have |
 
 ## 6. Organic Certification Body
 
-The strategic BPMN explicitly shows an **Organic Certification Body** and a **certification** message interaction with the network's quality function. The UC01 comparison also raises certification checks as a design question; therefore verification is **conditional**, not a confirmed mandatory step for every listing.
+The Organic Certification Body is shown in our strategic BPMN diagram. It could be involved when a producer claims that a product is organic. We still need to decide as a group whether certification checking will be part of our executable workflow.
 
-| ID | Goal | System requirement / response | Priority |
+| ID | Goal | How we can meet it | Priority |
 |---|---|---|---|
-| OC01 | Receive valid verification requests | Send relevant certification identifiers/details | Should (conditional) |
-| OC02 | Return trustworthy results | Handle verified, rejected or unavailable responses | Should (conditional) |
-| OC03 | Prevent unsupported claims | Never label an unverified product as certified | Must if certification is shown |
-| OC04 | Handle service interruption | Retry, defer or route to review according to agreed rules | Should (conditional) |
+| OC01 | Receive the details needed to check a claim | Send the relevant certification information | Should Have |
+| OC02 | Give a clear verification result | Handle approved, rejected and unavailable responses | Should Have |
+| OC03 | Avoid showing false certification claims | Do not mark a product as verified unless the check succeeds | Must Have if included |
+| OC04 | Handle a failed verification service | Allow a retry or send the listing for review, depending on our agreed rules | Should Have |
 
 ## 7. Food Safety Regulator and Quality, Compliance & Sustainability
 
-The BPMN shows a **Food Safety Regulator** linked by **compliance reporting** to the organisation's **Ensure food quality and safety** activity. This is a **wider enterprise relationship**, not proof that the regulator directly approves individual UC01 listings.
+Our strategic BPMN also includes the **Food Safety Regulator** and the **Quality, Compliance & Sustainability** team. They are important to the marketplace because product information needs to meet relevant quality and food safety expectations.
 
-| ID | Stakeholder | Goal | UC01 implication | Priority |
-|---|---|---|---|---|
-| FS01 | Food Safety Regulator | Promote food safety compliance | Catalogue policies should allow required food information to be recorded where applicable | Should / confirm rules |
-| FS02 | Quality, Compliance & Sustainability team | Maintain trustworthy food information | Define or review product-data standards and relevant claims | Should |
-| FS03 | Quality, Compliance & Sustainability team | Support compliance oversight | Retain relevant listing/change evidence if required | Should |
+However, our BPMN does not show the regulator approving every individual product listing. We should not add this step to Use Case 1 unless it is an agreed requirement.
 
-Do **not** add a regulator approval gateway to the UC01 Camunda process unless the group has confirmed such a business rule.
+| ID | Stakeholder | Goal | How it relates to our use case |
+|---|---|---|---|
+| FS01 | Food Safety Regulator | Make sure relevant food safety rules are followed | Product listings may need to include certain information, depending on the rules |
+| FS02 | Quality, Compliance & Sustainability team | Keep product information trustworthy | Help decide what product details and claims need checking |
+| FS03 | Quality, Compliance & Sustainability team | Support compliance checks | Keep relevant records where needed |
 
-## 8. Other Stakeholders in the Strategic BPMN (Outside UC01)
+## 8. Other Stakeholders in the BPMN
 
-| Stakeholder / function | Strategic BPMN involvement | Why excluded from UC01 execution |
+These stakeholders are shown in the strategic diagram but are not directly involved in our chosen product listing workflow.
+
+| Stakeholder | What they do | Why they are outside Use Case 1 |
 |---|---|---|
-| Sales & Operations | Sell local food and fulfil/deliver orders | Uses published listings downstream; order processing is separate |
-| Finance | Manage finances | Settlements and payment records are outside listing management |
-| Payment Provider | Payment processing | Relevant to checkout/payment use case |
-| Delivery Partner | Delivery services | Relevant to order fulfilment |
+| Sales & Operations | Handles sales and order fulfilment | Uses the product catalogue after listings have been published |
+| Finance | Manages financial activities | Payments and settlements are not part of product listing |
+| Payment Provider | Processes customer payments | Belongs to the checkout and payment process |
+| Delivery Partner | Delivers customer orders | Belongs to the order fulfilment process |
 
-These stakeholders should remain visible in the **strategic BPMN** and broader stakeholder map, without adding payment or delivery tasks to UC01.
+## 9. Stakeholder Goals and Dependencies
 
-## 9. Stakeholder Dependencies for i* Modelling
+We can use these relationships when creating our **i\* model**. They show who depends on whom to achieve their goals.
 
-| Depender | Dependee | Dependency |
+| Stakeholder | Depends on | Reason |
 |---|---|---|
-| Producer | Marketplace Platform | Validate, publish and update listings |
-| Producer | Producer & Product Management | Support exceptional listing issues |
-| Customer | Producer | Accurate product and availability information |
-| Customer | Marketplace Platform | Current published catalogue |
-| Producer & Product Management | Producer | Complete, correct listing data |
-| Marketplace Operator | Producer & Product Management | Consistent catalogue management |
-| Marketplace Administrator (if adopted) | Marketplace Platform | Listing status, errors and review tools |
-| Marketplace Platform | Organic Certification Body (if adopted) | Certification verification result |
-| Quality, Compliance & Sustainability | Marketplace Operator | Agreed quality and compliance policies |
-| Marketplace Operator | Food Safety Regulator | Relevant regulatory expectations (wider enterprise) |
+| Producer | Marketplace Platform | To validate, save and publish product listings |
+| Producer | Producer & Product Management team | To help with listing problems when needed |
+| Customer | Producer | To provide correct product and stock information |
+| Customer | Marketplace Platform | To show the latest published product details |
+| Producer & Product Management team | Producer | To provide complete and accurate product information |
+| Marketplace Operator | Producer & Product Management team | To keep the product catalogue consistent |
+| Marketplace Administrator (if included) | Marketplace Platform | To view listing errors and review flagged products |
+| Marketplace Platform (if included) | Organic Certification Body | To check certification claims |
+| Quality, Compliance & Sustainability team | Marketplace Operator | To agree on product information and compliance rules |
+| Marketplace Operator | Food Safety Regulator | To understand relevant food safety expectations |
 
-## 10. UC01 Workflow and BPMN Alignment
+## 10. Use Case 1: Product Listing & Inventory Management
 
-**Strategic parent process:** Producer & Product Management → **Manage the product catalogue** (collapsed subprocess).
+**Main process in our strategic BPMN:** Producer & Product Management → **Manage the product catalogue**.
 
-**Primary actor:** Producer.  
-**Supporting system:** Marketplace Platform.  
-**Conditional participants:** Marketplace Administrator and Organic Certification Body.  
-**Outcome:** Valid listing created or updated, with accurate availability.
+**Main actor:** Producer  
+**Supporting system:** Marketplace Platform  
+**Other possible actors:** Marketplace Administrator and Organic Certification Body  
+**Expected result:** A valid product is published or updated with accurate stock and availability information.
 
-### Main flow
+### Main process
 
-1. Producer enters or updates product information.
-2. Platform validates required fields and business rules.
-3. Gateway: Is the submission valid?
-4. If **no**, return clear errors; producer corrects and resubmits.
-5. If **yes**, perform any agreed optional certification check or manual review.
-6. Platform saves the product and stock/seasonal information.
-7. Platform publishes or updates the catalogue listing.
-8. Producer receives confirmation; customers can view the current listing.
+1. The producer enters a new product or updates an existing one.
+2. The system checks that the required information has been entered correctly.
+3. If something is missing or incorrect, the producer receives an error message and can fix it.
+4. If the information is valid, the system carries out any additional checks we have agreed on, such as organic certification.
+5. The system saves the product information and stock details.
+6. The product is published or updated in the catalogue.
+7. The producer receives confirmation and customers can see the updated information.
 
-### Exception paths
+### Other scenarios we need to consider
 
-- **Invalid information:** Do not publish; return errors for correction.
-- **Inventory change:** Validate and save updated stock/seasonal availability.
-- **Certification service unavailable (conditional):** Keep certification unverified and apply the agreed retry/review rule.
-- **Administrator review (conditional):** Route flagged submission to an authorised reviewer.
+- **Invalid information:** The product should not be published until the producer corrects the errors.
+- **Stock update:** The producer changes stock or seasonal availability and the system saves the new information.
+- **Certification check fails:** If we include certification checking, the system should not show an unverified product as certified.
+- **Manual review:** If we include an administrator review, flagged products can be checked before publication.
 
-## 11. Functional and Non-Functional Requirements Summary
+## 11. Functional and Non-Functional Requirements
 
-**Core functional requirements:** Create/edit listings; capture required product details; validate submissions; reject invalid entries; update stock and seasonal availability; publish valid records; show current catalogue data; restrict unauthorised edits.
+### Functional requirements
 
-**Conditional functional requirements:** Certification verification; administrative review; listing suspension; enhanced audit records.
+The system must allow producers to add and edit product listings, enter product details, update stock and seasonal availability, and submit information for validation. Invalid listings must not be published, and customers should only see the latest published product information. Producers should only be able to change listings they are authorised to manage.
 
-**Non-functional requirements:** Usability for producers with limited technical experience; accurate and consistent data; secure authorisation; reliable publication and update behaviour; maintainable validation rules; clear error feedback.
+We may also include certification checking, administrator reviews and records of important changes, depending on what the group agrees is achievable.
 
-## 12. Conclusion and Scope Notes
+### Non-functional requirements
 
-The stakeholder analysis now reflects the **actual participants and organisational functions shown in the strategic BPMN**, while retaining the specific boundaries of **UC01 Product Listing & Inventory Management**.
+The system should be easy to use, especially for producers who are not confident with technology. It should keep product information accurate and consistent, protect listings from unauthorised changes, and give clear feedback when something goes wrong. Validation rules should also be straightforward to maintain.
 
-- **Direct UC01 focus:** Producers, customers as beneficiaries, Producer & Product Management, and the marketplace platform/operator.
-- **Conditional UC01 support:** Marketplace Administrator and Organic Certification Body.
-- **Wider strategic/compliance context:** Food Safety Regulator and Quality, Compliance & Sustainability.
-- **Outside UC01:** Payment Provider, Delivery Partner, Finance, and order fulfilment.
+## 12. Conclusion
 
-**Assumptions to confirm:** Whether organic certification checks are mandatory, whether flagged listings need manual approval, the exact stock/seasonal business rules, and any required regulatory product fields. The strategic BPMN does not establish these operational rules by itself.
+For Use Case 1, the main stakeholders are **Producers, Customers, the Bristol Regional Food Network and the Producer & Product Management team**. We have also considered the Marketplace Administrator, Organic Certification Body and the quality and regulatory stakeholders shown in our strategic BPMN.
+
+Our focus is on making it easier for producers to list products and manage stock, while making sure customers can see accurate information. The other stakeholders help us understand the wider marketplace, but we do not need to include all of their processes in our Camunda workflow.
+
+**Things we still need to agree as a group:** Whether organic certification checks are included, whether any listings need administrator approval, and what stock and seasonal availability rules we will use.
